@@ -15,7 +15,8 @@ git clone https://github.com/thunderbird/thunderbolt.git
 cd thunderbolt/deploy
 cp .env.example .env
 # Edit .env — at minimum set BETTER_AUTH_SECRET (32+ chars; generate with
-# `openssl rand -base64 32`) and one AI provider API key.
+# `openssl rand -base64 32`) and configure one inference route: either a hosted
+# provider key or a local/on-prem OpenAI-compatible endpoint.
 # Note: POWERSYNC_JWT_SECRET is hardcoded in docker-compose.yml; override
 # only if you fork the compose file.
 docker compose up --build

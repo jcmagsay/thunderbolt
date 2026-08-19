@@ -33,7 +33,7 @@ You're expected to replace the demo user, reconfigure the Keycloak client, and r
 
 - A domain and DNS control (for production)
 - TLS certificates — cert-manager on Kubernetes, ACM for AWS, or bring your own
-- At least one AI provider API key
+- One inference route: either a hosted AI provider key or a local/on-prem OpenAI-compatible endpoint such as Ollama or llama.cpp
 - A `BETTER_AUTH_SECRET` — any 32+ character random string
 - A `POWERSYNC_JWT_SECRET` — 32+ characters; must match the one in the PowerSync config
 

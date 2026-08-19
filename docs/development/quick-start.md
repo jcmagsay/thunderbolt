@@ -11,7 +11,7 @@ After cloning, run **`make doctor`** — it inspects your machine and prints exa
 - **sccache** — speeds up Rust rebuilds (`cargo install sccache`)
 - **Docker** — PowerSync and PostgreSQL run in containers during local dev
 
-You'll also need at least one AI provider API key — Anthropic, OpenAI, Mistral, Fireworks, or any OpenAI-compatible endpoint (Ollama and llama.cpp are recommended for local inference).
+You'll also need one inference route: either an AI provider API key or a local OpenAI-compatible endpoint. Ollama and llama.cpp require no hosted-provider account. See [Two Ways to Adopt Thunderbolt](../../onboarding.md#two-ways-to-adopt-thunderbolt) before creating accounts for any optional service.
 
 ### Linux desktop builds
 
@@ -46,7 +46,7 @@ For other distributions, use the upstream
    make doctor
    ```
 
-   `make doctor` generates a `BETTER_AUTH_SECRET` for `backend/.env` automatically if it's empty or still set to the placeholder. Add at least one AI provider key (e.g. `ANTHROPIC_API_KEY`) — see [Configuration](../self-hosting/configuration.md) for the full list. Root `.env` is for the Vite/Tauri frontend; `backend/.env` is for the API server.
+   `make doctor` generates a `BETTER_AUTH_SECRET` for `backend/.env` automatically if it's empty or still set to the placeholder. Hosted provider keys are optional when you configure Ollama or llama.cpp in **Settings → Models**. See [Configuration](../self-hosting/configuration.md) for the full list. Root `.env` is for the Vite/Tauri frontend; `backend/.env` is for the API server.
 
 3. **Start Postgres + PowerSync.**
 
@@ -100,4 +100,7 @@ For other distributions, use the upstream
 - [Mobile Setup](./mobile-setup.md) — iOS / Android / desktop Tauri dev prerequisites.
 - [Architecture](../architecture/) — how the pieces connect.
 - [Testing](./testing.md) — test patterns, composite keys, synced table rules.
+- [Engineering Quality and Operations](./engineering-quality.md) — CI gates, reported metrics, workflow costs, security scanning, monitoring, and privacy.
+- [Engineering Quality Improvement Proposal](./engineering-improvement-plan.md) — a contributor-proposed sequence, evidence model, and measurable exit criteria.
+- [Agent Skill Validation](./agent-skill-validation.md) — required validation for repository-owned agent skills.
 - [Self-Hosting](../self-hosting/) — deploy Thunderbolt somewhere real.
