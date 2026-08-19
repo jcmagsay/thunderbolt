@@ -23,8 +23,11 @@ cp .env.example .env
 ### Documentation via Swagger
 
 - API documentation is available at `/v1/swagger` when `SWAGGER_ENABLED=true` is set
-- All routes are automatically documented with OpenAPI/Swagger
+- The raw generated OpenAPI document is available at `/v1/swagger/json`
+- Elysia derives the OpenAPI document from registered routes and their available schemas
 - TypeScript provides inline documentation and type checking
+
+The schema is generated at runtime and is disabled by default. Dynamic Better Auth routes, generic proxy routes, WebSockets, streaming behavior, and routes without complete request/response schemas may require additional documentation.
 
 ### Development
 

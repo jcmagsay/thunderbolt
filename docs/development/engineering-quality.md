@@ -25,6 +25,23 @@ The primary TypeScript and backend suites run five times in randomized order in 
 
 Playwright runs two shards with one Chromium worker per shard. It starts real Vite and backend processes and uses mock OIDC and SAML identity providers. Failure artifacts include traces, screenshots, and an HTML report with limited retention.
 
+### API contract and scenario coverage
+
+The backend has substantial Bun coverage across route handlers, authentication, data access, inference, proxying, streaming, WebSockets, CORS, rate limiting, and error handling. Most HTTP route tests use Elysia's in-process `app.handle()` rather than sending requests to a separately running server. CI runs most of this suite five times in randomized order; WebSocket-heavy tests run separately with bounded retries. Playwright starts real backend processes for selected browser-driven OIDC, SAML, ACP, and proxy journeys.
+
+These layers provide strong implementation feedback, but they do not establish that the generated OpenAPI document is complete or that a built/deployed backend satisfies a reusable external API scenario suite. The Swagger test verifies that `/v1/swagger` is enabled or disabled as configured; it does not validate route coverage or contract accuracy.
+
+Repository-visible API-testing gaps include:
+
+- No checked-in OpenAPI baseline, schema lint, or contract-diff check
+- No completeness check for authentication, parameters, bodies, responses, errors, and examples across public routes
+- No Postman/Newman collection or equivalent black-box API suite
+- No single scenario matrix reusable against local, preview, and release-candidate environments
+- Limited real-socket coverage for CORS/preflight, cookie attributes, reverse-proxy behavior, rate limiting, SSE/streaming, WebSockets, and network failures
+- No generated-client compatibility test
+
+A Postman collection would be useful for exploration, support reproduction, and environment-based smoke runs, but it would not replace the Bun suite's faster and deeper implementation coverage. To reduce contract drift, a proposed black-box layer could treat the generated OpenAPI document as the source and generate or validate the collection. Playwright's API request support is another option already present in the repository; tool selection can remain separate from the coverage decision.
+
 Important gaps:
 
 - There is no enforced minimum coverage percentage.
@@ -34,6 +51,7 @@ Important gaps:
 - The repository-visible suites leave opportunities for broader production-like testing of multi-device PowerSync, offline conflicts, E2EE recovery, mixed client versions, and cross-runtime encryption.
 - Retried WebSocket tests reduce noise but can conceal intermittent defects; repeated retries are useful signals for further investigation.
 - AI evaluations depend on model/provider behavior and cost. They are manually triggered and complement deterministic tests rather than replacing them.
+- OpenAPI and black-box API contract coverage are not currently enforced in CI.
 
 Run the normal local checks with:
 

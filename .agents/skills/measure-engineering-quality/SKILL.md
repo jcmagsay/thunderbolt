@@ -11,7 +11,7 @@ This skill is provider and model agnostic. It must work with local or hosted age
 
 ## Workflow
 
-1. Read `AGENTS.md`, `docs/development/engineering-quality.md`, `docs/development/engineering-improvement-plan.md`, and `docs/development/agent-skill-validation.md` completely. Treat proposed work as contributor input unless maintainers have accepted it.
+1. Read `AGENTS.md`, `docs/development/engineering-quality.md`, `docs/development/engineering-improvement-plan.md`, `docs/development/engineering-change-proposal/README.md`, its linked proposal documents, and `docs/development/agent-skill-validation.md` completely. Treat proposed work as contributor input unless maintainers have accepted it.
 2. Inspect manifests, lockfiles, `bunfig.toml` files, test configuration, `.github/workflows/`, `SECURITY.md`, and `TELEMETRY.md`.
 3. Read [scorecard.md](references/scorecard.md) and evaluate every domain. Cite paths and line numbers for every control credited.
 4. Run only read-only local checks by default. Ask before network-backed audits. Never deploy, publish, update dependencies, modify GitHub settings, invoke paid model evaluations, or create external resources during measurement.
