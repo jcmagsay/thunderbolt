@@ -11,14 +11,14 @@ Thunderbolt → provider or runtime → selected model
 
 ## Examples
 
-| Provider or runtime | Example models |
-| --- | --- |
-| OpenAI | GPT models |
-| Anthropic | Claude models |
-| Mistral | Mistral models |
-| Ollama | Locally installed Llama, Qwen, Gemma, and other supported models |
-| OpenRouter | Models from multiple model creators exposed through one service |
-| Your organization | A model exposed through an on-prem OpenAI-compatible endpoint |
+| Provider or runtime | Example models                                                   |
+| ------------------- | ---------------------------------------------------------------- |
+| OpenAI              | GPT models                                                       |
+| Anthropic           | Claude models                                                    |
+| Mistral             | Mistral models                                                   |
+| Ollama              | Locally installed Llama, Qwen, Gemma, and other supported models |
+| OpenRouter          | Models from multiple model creators exposed through one service  |
+| Your organization   | A model exposed through an on-prem OpenAI-compatible endpoint    |
 
 A provider can offer several models. The same model family can also be available through more than one provider or deployment environment.
 

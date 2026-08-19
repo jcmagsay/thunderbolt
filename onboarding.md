@@ -28,13 +28,13 @@ Model = the weights and behavior served by that engine
 
 Thunderbolt manages the user-facing workspace: conversations, model definitions, skills, tools, company context, and local data. It routes work to inference engines, but it does not download model weights, schedule GPUs, or replace an inference runtime such as Ollama.
 
-### User A: I want the easy workspace
+### Adoption path A: I want an approachable workspace
 
 This user wants to chat, add company context and tools, and move between models without replacing the whole application. The shortest privacy-oriented route is one Thunderbolt client plus Ollama on the same machine. A hosted API is also an option when model quality or hardware requirements outweigh the local-only preference.
 
-The hosted “easy button” is not complete today: Thunderbolt does not provide a public inference service, and the project remains early. Users must currently supply either a local inference endpoint or credentials for a hosted provider.
+Thunderbolt does not currently document a public managed inference service. Users supply either a local inference endpoint or credentials for a hosted provider.
 
-### User B: I want to control the AI stack
+### Adoption path B: I want to control the AI stack
 
 This operator chooses and runs each layer:
 
@@ -75,7 +75,7 @@ No cloud model provider receives that inference request. The backend is still pa
 | Tinfoil                                           | No                                | Optional confidential hosted inference                                                                     |
 | Keycloak or another IdP                           | No for the basic development path | Optional enterprise identity; self-hostable alternatives are supported                                     |
 
-You can leave optional keys empty; their corresponding hosted capabilities will be unavailable. You should not create accounts or add credit cards merely to satisfy the example environment file.
+You can leave optional keys empty; their corresponding hosted capabilities will be unavailable. The example environment file does not require creating accounts or adding payment details for optional services.
 
 ### Start with Ollama and no model-provider key
 
@@ -104,7 +104,7 @@ Thunderbolt stores working data locally.
 Device A ── encrypt ──▶ sync service stores ciphertext ──▶ decrypt ──▶ Device B
 ```
 
-E2EE protects the synchronization path. It does not hide prompts from a selected cloud model, protect an already compromised device, or encrypt every piece of sync metadata. Sync and E2EE are preview features that need broader testing, operational evidence, and an independent cryptography audit.
+E2EE protects the synchronization path. It does not hide prompts from a selected cloud model, protect an already compromised device, or encrypt every piece of sync metadata. Sync and E2EE are preview features. Based on repository-visible evidence, broader testing, operational results, and an independent review of the complete cryptographic protocol would increase confidence; maintainers may have additional non-public evidence.
 
 Read [Sync and E2EE Production Readiness](./docs/architecture/production-readiness.md) for device approval, recovery, revocation, protection boundaries, risks, and contribution opportunities.
 

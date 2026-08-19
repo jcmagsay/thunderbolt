@@ -155,7 +155,7 @@ The custom SharedWorker extends `SharedSyncImplementation`, an `@internal` class
 
 ## Further Reading
 
-- [Production Readiness](./production-readiness.md) — plain-language sync/E2EE model, risks, and work required to increase trust.
+- [Production Readiness](./production-readiness.md) — plain-language sync/E2EE model, repository-visible risks, and proposed trust-building work.
 - [Multi-Device Sync](./multi-device-sync.md) — the sync pipeline in more depth.
 - [End-to-End Encryption](./e2e-encryption.md) — key hierarchy and device approval.
 - [Quick Start](../development/quick-start.md) and [Testing](../development/testing.md) — schema rules, tests, the things that bite.

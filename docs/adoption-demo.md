@@ -1,26 +1,26 @@
 # Five-Minute Adoption Demo
 
-Thunderbolt needs a demo that proves why a company would adopt the product—not merely that an LLM can summarize files.
+This document proposes a demo for maintainer and user validation. Its goal is to test whether Thunderbolt can communicate meaningful organizational value in five minutes, rather than only demonstrate that an LLM can summarize files.
 
 ## Demo Promise
 
 > Give every approved AI model accurate, reusable company context without pasting the same policies, terminology, and product facts into every prompt.
 
-Use a fictional but realistic company context repository containing a product-plan matrix, security policy, support playbook, architecture summary, and glossary. Thunderbolt connects to it through a read-only MCP server, retrieves relevant passages, and applies a reusable skill that requires sourced answers.
+The proposed scenario uses a fictional but realistic company context repository containing a product-plan matrix, security policy, support playbook, architecture summary, and glossary. Thunderbolt would connect to it through a read-only MCP server, retrieve relevant passages, and apply a reusable skill that requests sourced answers.
 
 This creates a repeatable organizational capability for support, onboarding, engineering, sales, and operations.
 
 ## Five-Minute Journey
 
-| Time | User action | Thunderbolt value |
-| --- | --- | --- |
-| 0:00–1:00 | Open a prepared deployment | Company-controlled AI entry point |
-| 1:00–2:00 | Inspect the Company Context connection and Company Answer skill | Governed context and reusable behavior |
+| Time      | User action                                                                  | Thunderbolt value                               |
+| --------- | ---------------------------------------------------------------------------- | ----------------------------------------------- |
+| 0:00–1:00 | Open a prepared deployment                                                   | Company-controlled AI entry point               |
+| 1:00–2:00 | Inspect the Company Context connection and Company Answer skill              | Governed context and reusable behavior          |
 | 2:00–3:00 | Ask whether an EU customer can export audit logs and what support should say | Selective, cited retrieval from company sources |
-| 3:00–4:00 | Inspect the context and token receipt | Visible sources, data flow, and efficiency |
-| 4:00–5:00 | Switch models and repeat the question | Model portability without rebuilding context |
+| 3:00–4:00 | Inspect the context and token receipt                                        | Visible sources, data flow, and efficiency      |
+| 4:00–5:00 | Switch models and repeat the question                                        | Model portability without rebuilding context    |
 
-The answer should cite the security policy, product plans, and support playbook; identify conflicting or stale information; and recommend an owner. This demonstrates provenance rather than fluent but unverifiable prose.
+The target answer cites the security policy, product plans, and support playbook; identifies conflicting or stale information; and recommends an owner. These are proposed success criteria for demonstrating provenance rather than fluent but unverifiable prose.
 
 ## Token-Savings Claim
 
@@ -51,7 +51,7 @@ Thunderbolt already provides:
 - Local conversation persistence
 - An AI evaluation harness
 
-It does not yet provide a turnkey organizational context repository, production RAG service, or user-facing token receipt. Workspaces are future architecture. The demo must distinguish proposed functionality from released functionality.
+The repository review did not identify a turnkey organizational context repository, production RAG service, or user-facing token receipt. Workspaces are described as future architecture. Any demo based on this proposal would need to distinguish proposed functionality from released functionality; maintainers may have additional roadmap context.
 
 ## Proposed Project
 
@@ -87,7 +87,7 @@ The target interface is:
 make demo
 ```
 
-It should use published images, start the sample context service, configure a demo identity, seed through supported interfaces, wait for health checks, and print one URL and one question. Provider keys must not enter fixtures or logs.
+An implementation could use published images, start the sample context service, configure a demo identity, seed through supported interfaces, wait for health checks, and print one URL and one question. Provider keys must not enter fixtures or logs.
 
 `make demo-local` can use Ollama or llama.cpp. Disclose model-download time separately rather than hiding it outside the five-minute claim.
 
@@ -125,4 +125,4 @@ Track:
 - Visible context version/freshness
 - Attempts of a second question or model
 
-CI should run the complete path with deterministic retrieval and a mock model. A scheduled or release-gated test should use one real provider to catch proxy, tool-calling, usage, and streaming failures.
+A proposed validation path would run the complete flow in CI with deterministic retrieval and a mock model. Subject to maintainer approval, cost controls, and credential policy, a scheduled or release-gated test could use one real provider to catch proxy, tool-calling, usage, and streaming failures.

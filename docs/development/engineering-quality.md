@@ -1,8 +1,8 @@
 # Engineering Quality, CI, Security, and Operations
 
-This guide explains the automated safeguards around a Thunderbolt change. It distinguishes hard merge signals from informational reporting and highlights workflows that can deploy infrastructure or consume paid services.
+This guide summarizes automated safeguards visible in the repository. It distinguishes hard workflow failures from informational reporting and highlights workflows that can deploy infrastructure or consume paid services.
 
-Repository configuration cannot show whether GitHub branch protection requires every check, whether organization-level secret scanning or Dependabot is enabled, or what spending limits exist. Verify those controls in GitHub before treating them as enforced.
+This is an external, repository-based review rather than an approved security assessment. Repository configuration cannot show whether GitHub branch protection requires every check, whether organization-level secret scanning or Dependabot is enabled, what spending limits exist, or which private findings are already being addressed. Confirm those controls and priorities with maintainers before treating them as absent or unenforced.
 
 ## What Enforces Quality
 
@@ -31,8 +31,8 @@ Important gaps:
 - Coverage, bundle size, Lighthouse, accessibility, and Web Vitals are reported rather than merge-blocking.
 - Browser E2E covers Chromium, not Firefox or WebKit/Safari.
 - There is no equivalent automated Tauri, iOS, or Android E2E matrix.
-- Multi-device PowerSync, offline conflicts, E2EE recovery, mixed client versions, and cross-runtime encryption need broader production-like testing.
-- Retried WebSocket tests reduce noise but can conceal intermittent defects; repeated retries should be investigated rather than normalized.
+- The repository-visible suites leave opportunities for broader production-like testing of multi-device PowerSync, offline conflicts, E2EE recovery, mixed client versions, and cross-runtime encryption.
+- Retried WebSocket tests reduce noise but can conceal intermittent defects; repeated retries are useful signals for further investigation.
 - AI evaluations depend on model/provider behavior and cost. They are manually triggered and complement deterministic tests rather than replacing them.
 
 Run the normal local checks with:
@@ -75,7 +75,7 @@ The material cost surfaces are:
 - AI deep review uses a high-effort hosted model with bounded turns and a 30-minute job timeout.
 - AI evaluations invoke paid inference providers and can run for substantially longer than ordinary tests.
 
-Before adding a scheduled job or matrix axis, set a timeout, concurrency policy, path filter where appropriate, artifact retention, and an owner-visible cost signal. Infrastructure should have deterministic teardown and external budget alerts. GitHub Actions, AWS, model-provider, and artifact-storage budgets are organization settings and are not defined by this repository.
+When proposing a scheduled job or matrix axis, consider a timeout, concurrency policy, path filter where appropriate, artifact retention, and an owner-visible cost signal. Deterministic teardown and external budget alerts would reduce infrastructure-cost risk. GitHub Actions, AWS, model-provider, and artifact-storage budgets are organization settings and are not defined by this repository.
 
 ## Security Detection
 
@@ -94,17 +94,7 @@ The existing baseline mechanisms cover different concerns:
 | AI evaluations      | Model behavior against checked-in expectations                  | No                              |
 | Dependency security | Not implemented                                                 | No                              |
 
-A point-in-time `bun audit` on August 19, 2026 reported:
-
-| Package root     | Critical | High | Moderate | Low |
-| ---------------- | -------: | ---: | -------: | --: |
-| Root application |        2 |   27 |       38 |  10 |
-| Backend          |        2 |   42 |       21 |   2 |
-| CLI              |        0 |    4 |        5 |   0 |
-| Marketing web    |        0 |    4 |       17 |   6 |
-| Pulumi           |        2 |   18 |       20 |   2 |
-
-These totals are discovery results, not proof that every advisory is reachable in Thunderbolt. Direct runtime findings—particularly authentication, SSO, proxying, parsing, and externally reachable backend dependencies—require immediate applicability review. Counts become stale as advisories and lockfiles change; rerun the audit rather than treating this table as a live status dashboard.
+A local point-in-time `bun audit` produced advisories across multiple package roots that warrant private applicability review. Audit severity does not establish that an advisory is reachable or exploitable in Thunderbolt, and results become stale as advisories and lockfiles change. Potentially applicable security findings should be triaged privately with maintainers through the process in [`SECURITY.md`](../../SECURITY.md) before publishing severity counts or package-level details. Rerun the audit for current data rather than treating this observation as a live status dashboard.
 
 Repository-visible gaps include:
 
@@ -118,20 +108,22 @@ Repository-visible gaps include:
 
 GitHub may provide dependency alerts, secret scanning, or push protection outside the repository. Confirm their status in repository settings. Report vulnerabilities privately as described in [`SECURITY.md`](../../SECURITY.md).
 
-### Dependency security roadmap
+### Proposed dependency-security improvements
 
-This is required production-readiness work:
+These are suggested next steps derived from repository-visible gaps, not an approved roadmap or severity policy. Maintainers should confirm current private controls, priorities, and responsible-disclosure handling before implementation.
 
-1. **Remediate direct critical/high runtime findings.** Start with authentication and SSO dependencies, then externally reachable backend packages.
+If maintainers adopt this direction, candidate work includes:
+
+1. **Privately triage direct critical/high runtime findings.** Start with authentication and SSO dependencies, then externally reachable backend packages; remediate according to applicability and the maintainers' severity policy.
 2. **Add automated update management.** Configure Dependabot or Renovate for every Bun package root, both Cargo manifests, GitHub Actions, and container base images.
-3. **Add a required multi-lockfile audit job.** Scan all five Bun lockfiles and both Cargo lockfiles on PRs, `main`, and a weekly schedule.
-4. **Establish a differential baseline.** Fail when a PR introduces a critical/high advisory or increases risk relative to `main`; do not permanently grandfather everything already present.
-5. **Create expiring exceptions.** Every accepted advisory needs an owner, reachability rationale, mitigation, and expiration date.
+3. **Evaluate a required multi-lockfile audit job.** Scan all five Bun lockfiles and both Cargo lockfiles on PRs, `main`, and a weekly schedule, then apply a maintainer-approved enforcement policy.
+4. **Establish a differential baseline.** Consider blocking newly introduced applicable critical/high advisories or increases relative to `main`, using an accepted exception policy rather than permanently grandfathering existing risk.
+5. **Propose expiring exceptions.** A candidate policy would give every accepted advisory an owner, reachability rationale, mitigation, and expiration date.
 6. **Expand supply-chain scanning.** Scan final container images and infrastructure configuration, generate SBOMs, and publish SARIF or another reviewable report.
 7. **Harden installs consistently.** Apply the release-age quarantine to backend, web, and Pulumi package roots; use lifecycle-script-free CI installs where builds permit it.
 8. **Add Firefox, then WebKit coverage.** Chromium is the only browser currently installed and tested by Playwright CI.
 
-The target PR report should show counts and changes per package root, distinguish runtime from development scope where possible, list expiring exceptions, and fail according to a documented severity/remediation policy. A green Semgrep check must not be interpreted as a clean dependency audit.
+A proposed PR report could show counts and changes per package root, distinguish runtime from development scope where possible, list expiring exceptions, and enforce a maintainer-approved severity/remediation policy. A green Semgrep check does not by itself establish a clean dependency audit.
 
 ## Monitoring and Privacy
 
@@ -148,9 +140,11 @@ These controls do not make every data path local:
 - Preview environments can receive provider credentials and should use test data only.
 - Local inference remains local only when the configured model and tools do not route data elsewhere.
 
-Monitoring is instrumentation rather than a complete operational program. The repository does not define production SLOs, alert thresholds, on-call routing, mobile crash reporting, or dashboard provisioning. Operators should establish availability, latency, error-rate, sync-lag, provider-cost, and restore/recovery signals for their deployment.
+Monitoring is instrumentation rather than a complete operational program. This repository review did not identify production SLOs, alert thresholds, on-call routing, mobile crash reporting, or dashboard provisioning; these controls may exist outside the repository. Operators can establish availability, latency, error-rate, sync-lag, provider-cost, and restore/recovery signals appropriate to their deployment.
 
 Read [Telemetry](../../TELEMETRY.md), [Self-hosting Configuration](../self-hosting/configuration.md), and [Sync and E2EE Production Readiness](../architecture/production-readiness.md) for the underlying controls and limitations.
+
+A proposed phased remediation sequence and scorecard are described in [Engineering Quality Improvement Proposal](./engineering-improvement-plan.md). The [Agent Skill Validation Standard](./agent-skill-validation.md) proposes validation criteria for repository-owned skills.
 
 ## Review Checklist
 

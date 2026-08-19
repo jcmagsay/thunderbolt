@@ -35,7 +35,7 @@ Practical uses include a private company AI workspace, a local-model assistant, 
 
 Thunderbolt is the workspace and control plane around AI; it is not itself a model host. Ollama, llama.cpp, a cloud API, or an on-prem inference cluster performs the inference. This creates two valid ways to use the project:
 
-|                 | Workspace user                                                | Infrastructure operator                                                    |
+|                 | Workspace adopter                                             | Infrastructure operator                                                    |
 | --------------- | ------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | Goal            | Get one useful interface for chat, context, skills, and tools | Control where models run, where data lives, and which services are allowed |
 | Inference       | Add one local or hosted provider                              | Operate Ollama, llama.cpp, or an OpenAI-compatible inference service       |
@@ -77,7 +77,7 @@ E2EE protects the synchronization path; it does not hide prompts from a cloud mo
 
 - [Contributor Onboarding](./onboarding.md) — a short product, architecture, repository, and development tour.
 - [Architecture](./docs/architecture/README.md) — components and data flows.
-- [Production Readiness](./docs/architecture/production-readiness.md) — sync/E2EE behavior, risks, and trust-building work.
+- [Production Readiness](./docs/architecture/production-readiness.md) — sync/E2EE behavior, repository-visible risks, and proposed trust-building work.
 - [Models and Providers](./docs/models-and-providers.md) — what each term means and what portability does and does not guarantee.
 - [Local vs. Native Quality](./docs/local-vs-native-quality.md) — when Thunderbolt can match local or hosted native AI experiences, and when it cannot.
 - [Five-Minute Adoption Demo](./docs/adoption-demo.md) — proposed company-context demonstration and success criteria.

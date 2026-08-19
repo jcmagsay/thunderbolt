@@ -1,6 +1,8 @@
 # Sync and E2EE Production Readiness
 
-Cross-device synchronization and optional end-to-end encryption are preview features. This guide explains what they do, what they protect, why they are not yet production-proven, and what work would increase confidence.
+Cross-device synchronization and optional end-to-end encryption are preview features. This guide explains what they do, what they protect, which risks are visible in the repository, and what work could increase confidence.
+
+This is a repository-based review, not a security certification or a maintainer-approved production-readiness decision. It may not reflect private audits, operational evidence, or work in progress. Confirm deployment decisions and additional evidence with the maintainers.
 
 ## The Two-Minute Model
 
@@ -40,26 +42,26 @@ Revoking a device prevents future sync access and removes its server-side envelo
 
 ## Protection Boundary
 
-| E2EE helps protect against | E2EE does not automatically protect against |
-| --- | --- |
-| A stolen PostgreSQL backup revealing protected content | Malware or another user reading an unlocked device |
-| A sync operator reading protected fields | A selected cloud model receiving content for inference |
-| Network intermediaries seeing synchronized plaintext | Loss of every device and the recovery phrase |
-| Server-side disclosure of encrypted chat and skill fields | Visible sync metadata such as IDs, ownership, status, and timestamps |
-| Reading ciphertext without the content key | Prompt injection, excessive tool permissions, or incorrect model output |
+| E2EE helps protect against                                | E2EE does not automatically protect against                             |
+| --------------------------------------------------------- | ----------------------------------------------------------------------- |
+| A stolen PostgreSQL backup revealing protected content    | Malware or another user reading an unlocked device                      |
+| A sync operator reading protected fields                  | A selected cloud model receiving content for inference                  |
+| Network intermediaries seeing synchronized plaintext      | Loss of every device and the recovery phrase                            |
+| Server-side disclosure of encrypted chat and skill fields | Visible sync metadata such as IDs, ownership, status, and timestamps    |
+| Reading ciphertext without the content key                | Prompt injection, excessive tool permissions, or incorrect model output |
 
 The inference path is separate from the sync path. When a user sends content to a cloud model, the provider must receive that content to process it. A local or on-prem model keeps inference under the operator's control.
 
 ## Appropriate Uses Today
 
-| Good fit | Use caution or wait |
-| --- | --- |
-| Development and architecture evaluation | Regulated or high-assurance workloads without independent review |
-| Internal pilots with recoverable data | Data that cannot tolerate loss, stale state, or conflicts |
-| Cross-platform and offline experiments | Assuming revocation erases an already compromised endpoint |
+| Good fit                                                       | Use caution or wait                                                          |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| Development and architecture evaluation                        | Regulated or high-assurance workloads without independent review             |
+| Internal pilots with recoverable data                          | Data that cannot tolerate loss, stale state, or conflicts                    |
+| Cross-platform and offline experiments                         | Assuming revocation erases an already compromised endpoint                   |
 | Contributing tests, recovery behavior, and operational tooling | Deployments without backups, monitoring, restore drills, and upgrade testing |
 
-The implementation uses established primitives: AES-256-GCM for content, P-256 plus ML-KEM-768 for device envelopes, and a BIP-39 recovery phrase. Production trust depends on the complete protocol and operations, not only primitive selection.
+The implementation uses established primitives: AES-256-GCM for content, P-256 plus ML-KEM-768 for device envelopes, and a BIP-39 recovery phrase. Evaluating production trust involves the complete protocol and its operation, not only primitive selection.
 
 ## Why Sync Is Still Preview
 
@@ -73,7 +75,7 @@ A synced table or column touches frontend and backend schemas, migrations, the s
 
 ### Multiple runtime paths
 
-Chrome, Edge, and Firefox transform incoming data in a custom SharedWorker. Safari, iOS, and Tauri use a main-thread transformer path. Security-sensitive changes must be validated across both implementations, including multi-tab, offline, upgrade, and failure behavior.
+Chrome, Edge, and Firefox transform incoming data in a custom SharedWorker. Safari, iOS, and Tauri use a main-thread transformer path. Security-sensitive changes warrant validation across both implementations, including multi-tab, offline, upgrade, and failure behavior.
 
 ### PowerSync internal APIs
 
@@ -81,13 +83,13 @@ The custom SharedWorker extends PowerSync's internal `SharedSyncImplementation` 
 
 ### Operational maturity
 
-Production use requires PostgreSQL backups, restoration drills, PowerSync monitoring, migration discipline, client compatibility policies, and recovery from partially deployed releases.
+A production deployment would ordinarily include PostgreSQL backups, restoration drills, PowerSync monitoring, migration discipline, client compatibility policies, and recovery from partially deployed releases. The repository alone does not show whether a particular operator has these controls.
 
 ## Why E2EE Is Still Preview
 
 ### No independent cryptography audit
 
-The protocol has not yet undergone an independent cryptography audit. Review must cover key generation and storage, hybrid wrapping, authentication binding, recovery, device approval, replay and substitution attacks, downgrade behavior, malformed ciphertext, and both transform paths.
+This repository review did not identify a published independent cryptography audit of the complete protocol. Maintainers may have additional evidence. An independent review could cover key generation and storage, hybrid wrapping, authentication binding, recovery, device approval, replay and substitution attacks, downgrade behavior, malformed ciphertext, and both transform paths.
 
 ### Field-level encryption
 
@@ -103,13 +105,15 @@ Revocation stops future service access; it cannot make a key or plaintext disapp
 
 ### Recovery risk
 
-Zero-knowledge recovery is deliberately unforgiving. Deployments need clear backup guidance, recovery drills, abuse-resistant support procedures, and an explicit decision about enterprise escrow.
+Zero-knowledge recovery is deliberately unforgiving. Operators evaluating it may want clear backup guidance, recovery drills, abuse-resistant support procedures, and an explicit decision about enterprise escrow.
 
 ### Mixed-version compatibility
 
-Production confidence requires a test matrix for enablement, rollback, old and new clients, new encrypted columns, interrupted setup, corrupt envelopes, missing keys, and upgrades across all supported runtimes.
+A broader test matrix for enablement, rollback, old and new clients, new encrypted columns, interrupted setup, corrupt envelopes, missing keys, and upgrades across supported runtimes would provide additional production evidence.
 
-## Work That Would Increase Trust
+## Proposed Work That Could Increase Trust
+
+These are contribution candidates derived from the repository review, not an approved project roadmap. Maintainer input is needed to confirm priority, existing coverage, and ownership.
 
 1. Commission and publish an independent protocol and cryptography audit.
 2. Publish a threat model covering servers, operators, endpoints, metadata, recovery, and downgrade attacks.

@@ -92,6 +92,13 @@ When adding a new route, default to lazy unless the route is on the chat/landing
 - Remove unused variables and imports
 - Verify tests pass and no TypeScript errors exist
 
+## Engineering quality measurement and agent skills
+
+- Use `.agents/skills/measure-engineering-quality/SKILL.md` when auditing CI, dependency security, browser coverage, testing, workflow costs, monitoring, privacy, or progress against maintainer-accepted quality criteria.
+- Follow `docs/development/agent-skill-validation.md` for every repository-owned agent skill. Structural validation alone is insufficient; require trigger, negative-trigger, evidence, safety, failure-posture, output-contract, and forward-test evidence.
+- Keep canonical skills and guidance provider and model agnostic in support of Thunderbolt's BYO methodology. Describe capabilities instead of assuming a vendor, proprietary command syntax, hosted inference, or paid service; keep optional provider adapters behaviorally equivalent.
+- Treat `docs/development/engineering-improvement-plan.md` as a contributor proposal for maintainer consideration, not an approved roadmap or priority order.
+
 ## PowerSync and synced tables
 
 See [docs/architecture/powersync-account-devices.md](docs/architecture/powersync-account-devices.md) for: synced table requirements, adding a new table (frontend + backend + schema + config.yaml + production), account deletion, device management, and backend token/revoke API.

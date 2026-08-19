@@ -1,32 +1,32 @@
-# Thunderbolt Competitive Landscape
+# Thunderbolt Competitive Landscape: Evaluation Notes
 
-Thunderbolt competes in two markets at once: open-source/self-hosted AI workspaces and commercial enterprise assistants. The first group competes directly on architecture and deployment; the second competes for the same organizational budget and user attention.
+From a prospective adopter's perspective, Thunderbolt may be evaluated alongside two broad groups: open-source/self-hosted AI workspaces and commercial enterprise assistants. The first group offers comparable architecture or deployment choices; the second may compete for the same organizational budget and user attention.
 
-This comparison is directional rather than a procurement scorecard. Product capabilities and commercial terms change frequently and should be verified during an evaluation.
+These are external evaluation notes, not approved project positioning or a procurement scorecard. Product capabilities and commercial terms change frequently, and maintainers may have roadmap context that is not represented here. Treat the comparisons and positioning ideas below as hypotheses to validate through maintainer input and user research.
 
 ## Closest Direct Competitors
 
-| Competitor | Why buyers consider it | Current strength relative to Thunderbolt | Thunderbolt's potential differentiation |
-| --- | --- | --- | --- |
-| [Open WebUI](https://docs.openwebui.com/features/) | Self-hosted, multi-model AI workspace for teams | Broad feature set, established community, local-model adoption, and mature deployment options | Local-first device data, cross-platform Tauri clients, optional client-side E2EE, and encrypted multi-device sync |
-| [LibreChat](https://www.librechat.ai/docs/features) | Open-source, multi-provider chat with MCP, agents, RAG, code execution, and enterprise authentication | Mature tool/agent capabilities and a strong ChatGPT-like experience | Local SQLite ownership, native desktop/mobile direction, and encrypted synchronization |
-| [AnythingLLM](https://anythingllm.com/) | Private desktop or multi-user AI with documents, local models, agents, and RAG | Very fast onboarding and a polished “running locally in minutes” story | A synchronized cross-platform workspace and stronger on-prem application architecture |
-| [Jan](https://www.jan.ai/docs) | Open-source local alternative to ChatGPT and Claude with local inference and MCP | No-account local experience, integrated model acquisition, and strong individual adoption | Centrally managed enterprise deployment, organizational identity, and multi-device continuity |
-| [Msty](https://msty.ai/) | Privacy-focused desktop/web workspace with local models and governed knowledge | Polished local-model management and knowledge workflows | Open-source deployment, mobile support, local-first storage, and operator-controlled infrastructure |
+| Competitor                                          | Why buyers consider it                                                                                | Current strength relative to Thunderbolt                                                      | Thunderbolt's potential differentiation                                                                           |
+| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| [Open WebUI](https://docs.openwebui.com/features/)  | Self-hosted, multi-model AI workspace for teams                                                       | Broad feature set, established community, local-model adoption, and mature deployment options | Local-first device data, cross-platform Tauri clients, optional client-side E2EE, and encrypted multi-device sync |
+| [LibreChat](https://www.librechat.ai/docs/features) | Open-source, multi-provider chat with MCP, agents, RAG, code execution, and enterprise authentication | Mature tool/agent capabilities and a strong ChatGPT-like experience                           | Local SQLite ownership, native desktop/mobile direction, and encrypted synchronization                            |
+| [AnythingLLM](https://anythingllm.com/)             | Private desktop or multi-user AI with documents, local models, agents, and RAG                        | Very fast onboarding and a polished “running locally in minutes” story                        | A synchronized cross-platform workspace and stronger on-prem application architecture                             |
+| [Jan](https://www.jan.ai/docs)                      | Open-source local alternative to ChatGPT and Claude with local inference and MCP                      | No-account local experience, integrated model acquisition, and strong individual adoption     | Centrally managed enterprise deployment, organizational identity, and multi-device continuity                     |
+| [Msty](https://msty.ai/)                            | Privacy-focused desktop/web workspace with local models and governed knowledge                        | Polished local-model management and knowledge workflows                                       | Open-source deployment, mobile support, local-first storage, and operator-controlled infrastructure               |
 
 ### Open WebUI
 
-Open WebUI is likely Thunderbolt's closest overall competitor. Both promise a private, extensible interface across local, cloud, and OpenAI-compatible models. Open WebUI already presents knowledge, tools, model management, web search, voice, image generation, and enterprise self-hosting as one platform.
+Open WebUI appears to be a close architectural comparison. Both present a private, extensible interface across local, cloud, and OpenAI-compatible models. Open WebUI documents knowledge, tools, model management, web search, voice, image generation, and enterprise self-hosting as one platform.
 
-Thunderbolt should not try to win by saying only “self-hosted multi-model chat.” Its stronger long-term argument is that the user's device owns the working data and that an organization can synchronize that workspace without making the sync operator the plaintext owner.
+One differentiation hypothesis is to emphasize device-owned working data and the possibility of synchronizing a workspace without making the sync operator the plaintext owner, rather than relying only on the broad “self-hosted multi-model chat” category.
 
 ### LibreChat
 
-LibreChat is the strongest open-source feature competitor. It offers agents, MCP, skills, file search, code execution, artifacts, memory, web search, and enterprise authentication. It is a particularly strong substitute when a buyer values a mature web experience and tool ecosystem more than native clients or local-first persistence.
+LibreChat is a useful feature comparison because it documents agents, MCP, skills, file search, code execution, artifacts, memory, web search, and enterprise authentication. It may be a strong alternative when an evaluator values an established web experience and tool ecosystem more than native clients or local-first persistence.
 
 ### AnythingLLM
 
-AnythingLLM is the most important onboarding benchmark. Its desktop product packages local inference, document chat, agents, and privacy into a short installation journey. Thunderbolt's five-minute experience should be measured against this—not merely against the time required to build Thunderbolt from source.
+AnythingLLM provides a useful onboarding benchmark: its desktop product packages local inference, document chat, agents, and privacy into a short installation journey. A future Thunderbolt five-minute experience could be compared with adopter-facing setup flows like this, not only with the time required to build the project from source.
 
 ### Jan and Msty
 
@@ -36,23 +36,23 @@ Jan competes for developers and individuals who want a local, open, model-neutra
 
 These products do not match Thunderbolt's architecture, but they are often the default alternatives in an enterprise decision.
 
-| Substitute | Why it wins | Where Thunderbolt can differ |
-| --- | --- | --- |
-| [ChatGPT Enterprise](https://openai.com/business-data/) | Familiar product, frontier models, connectors, administration, retention controls, data residency, enterprise key management, and established compliance evidence | Provider choice, self-hosting, local-first data, and avoiding dependence on a single AI vendor |
-| [Claude Enterprise](https://support.anthropic.com/en/articles/9797531-what-is-the-enterprise-plan) | Strong models, large context, SSO/SCIM, audit logs, retention controls, compliance APIs, and native integrations | Multi-provider operation, on-prem ownership, and application-level portability |
-| [Microsoft 365 Copilot](https://learn.microsoft.com/en-us/microsoft-365/copilot/security-microsoft-365-copilot) | Existing Microsoft identity, permissions, documents, compliance, endpoint management, and procurement relationship | Independence from one productivity suite and support for locally operated models and data |
+| Substitute                                                                                                      | Why it wins                                                                                                                                                       | Where Thunderbolt can differ                                                                   |
+| --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [ChatGPT Enterprise](https://openai.com/business-data/)                                                         | Familiar product, frontier models, connectors, administration, retention controls, data residency, enterprise key management, and established compliance evidence | Provider choice, self-hosting, local-first data, and avoiding dependence on a single AI vendor |
+| [Claude Enterprise](https://support.anthropic.com/en/articles/9797531-what-is-the-enterprise-plan)              | Strong models, large context, SSO/SCIM, audit logs, retention controls, compliance APIs, and native integrations                                                  | Multi-provider operation, on-prem ownership, and application-level portability                 |
+| [Microsoft 365 Copilot](https://learn.microsoft.com/en-us/microsoft-365/copilot/security-microsoft-365-copilot) | Existing Microsoft identity, permissions, documents, compliance, endpoint management, and procurement relationship                                                | Independence from one productivity suite and support for locally operated models and data      |
 
-The commercial products' strongest advantage is organizational trust: support agreements, compliance artifacts, mature administration, operational history, and immediate time to value. Technical openness alone does not offset those advantages.
+Commercial products commonly offer support agreements, compliance artifacts, established administration, operational history, and short time to value. Evaluators may weigh that evidence alongside Thunderbolt's openness and control advantages.
 
-## Thunderbolt's Defensible Position
+## Positioning Hypothesis
 
-Thunderbolt should avoid positioning itself as simply an open-source ChatGPT replacement. That category is crowded and several alternatives are easier to adopt today.
+Based on this external review, describing Thunderbolt only as an open-source ChatGPT replacement may understate its architecture. Several alternatives already occupy that category and currently present shorter adopter-facing setup paths.
 
-A more distinctive position is:
+One positioning hypothesis for maintainer and user validation is:
 
 > Thunderbolt is a user-controlled, local-first AI workspace that an organization can deploy on-prem, connect to any model, and extend with its own context and tools across web, desktop, and mobile.
 
-The strongest combination is:
+Capabilities that appear distinctive in combination include:
 
 - Local SQLite as the working data store
 - Model and provider portability
@@ -63,7 +63,9 @@ The strongest combination is:
 
 The qualification matters: sync and E2EE are still preview capabilities. Until they have stronger audit, compatibility, recovery, and operational evidence, they are a promising differentiation rather than a production-proven moat.
 
-## Where Thunderbolt Is Behind
+## Current Evaluation Gaps
+
+The following observations are based on public documentation and a local repository review. They may not reflect unpublished work or maintainer priorities.
 
 - First-run time to value and local-model installation
 - Turnkey organizational knowledge and RAG workflows
@@ -73,11 +75,11 @@ The qualification matters: sync and E2EE are still preview capabilities. Until t
 - Production evidence for encrypted multi-device behavior
 - Brand awareness, community size, integrations, and support capacity
 
-These gaps suggest that the adoption demo should not present Thunderbolt as a longer way to reach an ordinary chatbot. It should demonstrate a workflow that makes control, reusable context, and model portability immediately valuable.
+These observations motivate a demo hypothesis: demonstrate a workflow where control, reusable context, and model portability are immediately useful, rather than only reproducing an ordinary chatbot interaction.
 
-## Recommended Competitive Demo
+## Proposed Competitive Demo
 
-The primary demo should show a company creating a reusable context repository that gives every approved model the same concise organizational understanding. A user should ask a real business question, receive a sourced answer through Thunderbolt, switch models without rebuilding the context, and see how selective retrieval reduces repeated prompt material.
+One candidate demo would show a company creating a reusable context repository that gives approved models the same concise organizational context. A user could ask a realistic business question, receive a sourced answer through Thunderbolt, switch models without rebuilding the context, and inspect how selective retrieval changes repeated prompt material.
 
 That story competes with:
 
@@ -86,6 +88,6 @@ That story competes with:
 - Jan on local ownership and model choice
 - ChatGPT, Claude, and Copilot on useful company context
 
-Thunderbolt's distinct message is not that retrieval itself is novel. It is that the organization controls the client, context service, model route, and data boundary while users keep one portable workspace.
+The hypothesis is not that retrieval itself is novel. The potential distinction is organizational control over the client, context service, model route, and data boundary while users retain one portable workspace.
 
 See `onboarding.md` for the proposed five-minute demo journey and the distinction between current capabilities and the additions required to deliver it.

@@ -68,15 +68,15 @@ To chat, you need one inference route: either an AI provider API key or a local 
 
 ## Helpful Makefile targets
 
-| Command                 | What it does                                                                   |
-| ----------------------- | ------------------------------------------------------------------------------ |
-| `make doctor`           | Verifies your tools + env files. `make doctor-q` only prints issues.           |
+| Command                 | What it does                                                         |
+| ----------------------- | -------------------------------------------------------------------- |
+| `make doctor`           | Verifies your tools + env files. `make doctor-q` only prints issues. |
 | `make run` / `make dev` | Starts backend + frontend. Kills stale processes on `:8000` and `:1420` first. |
-| `make docker-up`        | Starts PowerSync, Postgres, MongoDB.                                           |
-| `make docker-down`      | Stops containers, keeps volumes.                                               |
-| `make docker-nuke`      | Wipes all container data and rebuilds from scratch.                            |
-| `make check`            | Runs type-check, lint, and format-check.                                       |
-| `make format`           | Formats frontend, backend, and Rust.                                           |
+| `make docker-up`        | Starts PowerSync, Postgres, MongoDB.                                 |
+| `make docker-down`      | Stops containers, keeps volumes.                                     |
+| `make docker-nuke`      | Wipes all container data and rebuilds from scratch.                  |
+| `make check`            | Runs type-check, lint, and format-check.                             |
+| `make format`           | Formats frontend, backend, and Rust.                                 |
 
 ## Next steps
 

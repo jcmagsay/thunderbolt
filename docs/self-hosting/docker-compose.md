@@ -26,21 +26,21 @@ The backend entrypoint runs Drizzle migrations before serving traffic, the Keycl
 
 ## What You Get
 
-| Service        | URL                     | Credentials                                |
-| -------------- | ----------------------- | ------------------------------------------ |
-| App            | `http://localhost:3000` | Keycloak SSO (demo user below)             |
-| Keycloak admin | `http://localhost:8180` | `admin` / `admin` — **rotate immediately** |
-| Demo user      | (sign in via app)       | `demo@thunderbolt.io` / `demo`             |
+| Service        | URL                          | Credentials                                |
+| -------------- | ---------------------------- | ------------------------------------------ |
+| App            | `http://localhost:3000`      | Keycloak SSO (demo user below)             |
+| Keycloak admin | `http://localhost:8180`      | `admin` / `admin` — **rotate immediately** |
+| Demo user      | (sign in via app)            | `demo@thunderbolt.io` / `demo`             |
 
 Behind the scenes, the compose file boots:
 
-| Dockerfile                    | Base                            | Purpose                                                                                                         |
-| ----------------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `docker/frontend.Dockerfile`  | `oven/bun` → `nginx:alpine`     | Vite SPA with COEP/COOP headers                                                                                 |
-| `docker/backend.Dockerfile`   | `oven/bun:latest`               | Elysia API; entrypoint runs `bun drizzle-kit migrate` before starting                                           |
-| `docker/postgres.Dockerfile`  | `postgres:18-alpine`            | PostgreSQL with PowerSync replication role (`deploy/docker/postgres-init/01-powersync.sh`)                      |
-| `docker/keycloak.Dockerfile`  | `keycloak:26.0`                 | OIDC/SAML with the `thunderbolt` realm pre-imported                                                             |
-| `docker/powersync.Dockerfile` | `journeyapps/powersync-service` | PowerSync service with the synced-table rules; also stores its bucket data in Postgres (`powersync_storage` DB) |
+| Dockerfile                    | Base                               | Purpose                                                               |
+| ----------------------------- | ---------------------------------- | --------------------------------------------------------------------- |
+| `docker/frontend.Dockerfile`  | `oven/bun` → `nginx:alpine`        | Vite SPA with COEP/COOP headers                                       |
+| `docker/backend.Dockerfile`   | `oven/bun:latest`                  | Elysia API; entrypoint runs `bun drizzle-kit migrate` before starting |
+| `docker/postgres.Dockerfile`  | `postgres:18-alpine`               | PostgreSQL with PowerSync replication role (`deploy/docker/postgres-init/01-powersync.sh`) |
+| `docker/keycloak.Dockerfile`  | `keycloak:26.0`                    | OIDC/SAML with the `thunderbolt` realm pre-imported                   |
+| `docker/powersync.Dockerfile` | `journeyapps/powersync-service`    | PowerSync service with the synced-table rules; also stores its bucket data in Postgres (`powersync_storage` DB) |
 
 ## Customization
 

@@ -37,14 +37,14 @@ Thunderbolt has agent infrastructure and developing ACP support, but selecting t
 
 ## What to Expect
 
-| Scenario | Likely result |
-| --- | --- |
-| Thunderbolt using the same cloud model for straightforward chat | Often broadly comparable, but prompts, tools, and product features can cause differences |
-| Thunderbolt using a strong local model for summarization, extraction, or rewriting | Often useful and potentially sufficient |
-| Small local model handling complex reasoning or very long context | Usually behind frontier cloud models |
-| Thunderbolt chat compared with Codex or Claude Code on repository changes | Not an equivalent setup; the coding agents usually have a major workflow advantage |
-| Thunderbolt connected to a capable ACP agent with repository tools and tests | A more meaningful comparison, but it must be evaluated on real tasks |
-| Sensitive, repetitive company workflow with a tuned skill and MCP context | Thunderbolt may provide a better overall fit even if the underlying model is weaker |
+| Scenario                                                                           | Likely result                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Thunderbolt using the same cloud model for straightforward chat                    | Often broadly comparable, but prompts, tools, and product features can cause differences |
+| Thunderbolt using a strong local model for summarization, extraction, or rewriting | Often useful and potentially sufficient                                                  |
+| Small local model handling complex reasoning or very long context                  | Usually behind frontier cloud models                                                     |
+| Thunderbolt chat compared with Codex or Claude Code on repository changes          | Not an equivalent setup; the coding agents usually have a major workflow advantage       |
+| Thunderbolt connected to a capable ACP agent with repository tools and tests       | A more meaningful comparison, but it must be evaluated on real tasks                     |
+| Sensitive, repetitive company workflow with a tuned skill and MCP context          | Thunderbolt may provide a better overall fit even if the underlying model is weaker      |
 
 ## Local-Model Quality Depends On
 

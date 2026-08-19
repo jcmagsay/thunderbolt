@@ -84,15 +84,15 @@ For other distributions, use the upstream
 
 ## Helpful Makefile Targets
 
-| Command                 | What it does                                                                   |
-| ----------------------- | ------------------------------------------------------------------------------ |
-| `make doctor`           | Verifies your tools + env files. `make doctor-q` only prints issues.           |
+| Command                 | What it does                                                         |
+| ----------------------- | -------------------------------------------------------------------- |
+| `make doctor`           | Verifies your tools + env files. `make doctor-q` only prints issues. |
 | `make run` / `make dev` | Starts backend + frontend. Kills stale processes on `:8000` and `:1420` first. |
-| `make up`               | Starts PowerSync and Postgres.                                                 |
-| `make down`             | Stops containers, keeps volumes.                                               |
-| `make nuke`             | Wipes all container data and rebuilds from scratch.                            |
-| `make check`            | Runs type-check, lint, and format-check.                                       |
-| `make format`           | Formats frontend, backend, and Rust.                                           |
+| `make up`               | Starts PowerSync and Postgres.                                       |
+| `make down`             | Stops containers, keeps volumes.                                     |
+| `make nuke`             | Wipes all container data and rebuilds from scratch.                  |
+| `make check`            | Runs type-check, lint, and format-check.                             |
+| `make format`           | Formats frontend, backend, and Rust.                                 |
 
 ## Next Steps
 
@@ -101,4 +101,6 @@ For other distributions, use the upstream
 - [Architecture](../architecture/) — how the pieces connect.
 - [Testing](./testing.md) — test patterns, composite keys, synced table rules.
 - [Engineering Quality and Operations](./engineering-quality.md) — CI gates, reported metrics, workflow costs, security scanning, monitoring, and privacy.
+- [Engineering Quality Improvement Proposal](./engineering-improvement-plan.md) — a contributor-proposed sequence, evidence model, and measurable exit criteria.
+- [Agent Skill Validation](./agent-skill-validation.md) — required validation for repository-owned agent skills.
 - [Self-Hosting](../self-hosting/) — deploy Thunderbolt somewhere real.
