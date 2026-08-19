@@ -11,7 +11,7 @@ After cloning, run **`make doctor`** — it inspects your machine and prints exa
 - **sccache** — speeds up Rust rebuilds (`cargo install sccache`)
 - **Docker** — PowerSync and PostgreSQL run in containers during local dev
 
-You'll also need at least one AI provider API key — Anthropic, OpenAI, Mistral, Fireworks, or any OpenAI-compatible endpoint (Ollama and llama.cpp are recommended for local inference).
+You'll also need one inference route: either an AI provider API key or a local OpenAI-compatible endpoint. Ollama and llama.cpp require no hosted-provider account. See [Two Ways to Adopt Thunderbolt](../../onboarding.md#two-ways-to-adopt-thunderbolt) before creating accounts for any optional service.
 
 ### Linux desktop builds
 
@@ -46,7 +46,7 @@ For other distributions, use the upstream
    make doctor
    ```
 
-   `make doctor` generates a `BETTER_AUTH_SECRET` for `backend/.env` automatically if it's empty or still set to the placeholder. Add at least one AI provider key (e.g. `ANTHROPIC_API_KEY`) — see [Configuration](../self-hosting/configuration.md) for the full list. Root `.env` is for the Vite/Tauri frontend; `backend/.env` is for the API server.
+   `make doctor` generates a `BETTER_AUTH_SECRET` for `backend/.env` automatically if it's empty or still set to the placeholder. Hosted provider keys are optional when you configure Ollama or llama.cpp in **Settings → Models**. See [Configuration](../self-hosting/configuration.md) for the full list. Root `.env` is for the Vite/Tauri frontend; `backend/.env` is for the API server.
 
 3. **Start Postgres + PowerSync.**
 
@@ -84,15 +84,15 @@ For other distributions, use the upstream
 
 ## Helpful Makefile Targets
 
-| Command                 | What it does                                                         |
-| ----------------------- | -------------------------------------------------------------------- |
-| `make doctor`           | Verifies your tools + env files. `make doctor-q` only prints issues. |
+| Command                 | What it does                                                                   |
+| ----------------------- | ------------------------------------------------------------------------------ |
+| `make doctor`           | Verifies your tools + env files. `make doctor-q` only prints issues.           |
 | `make run` / `make dev` | Starts backend + frontend. Kills stale processes on `:8000` and `:1420` first. |
-| `make up`               | Starts PowerSync and Postgres.                                       |
-| `make down`             | Stops containers, keeps volumes.                                     |
-| `make nuke`             | Wipes all container data and rebuilds from scratch.                  |
-| `make check`            | Runs type-check, lint, and format-check.                             |
-| `make format`           | Formats frontend, backend, and Rust.                                 |
+| `make up`               | Starts PowerSync and Postgres.                                                 |
+| `make down`             | Stops containers, keeps volumes.                                               |
+| `make nuke`             | Wipes all container data and rebuilds from scratch.                            |
+| `make check`            | Runs type-check, lint, and format-check.                                       |
+| `make format`           | Formats frontend, backend, and Rust.                                           |
 
 ## Next Steps
 

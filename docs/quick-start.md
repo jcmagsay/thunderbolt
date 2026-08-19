@@ -10,7 +10,7 @@ This walks through running Thunderbolt locally: backend API, PowerSync sync serv
 
 Run `make doctor` after cloning to verify your environment is set up correctly. It prints exact install commands for anything missing.
 
-You'll also need at least one AI provider API key — Anthropic, OpenAI, Mistral, Fireworks, or any OpenAI-compatible endpoint (Ollama and llama.cpp are recommended for local inference).
+To chat, you need one inference route: either an AI provider API key or a local OpenAI-compatible endpoint. Ollama and llama.cpp require no hosted-provider account. See [Two Ways to Adopt Thunderbolt](../onboarding.md#two-ways-to-adopt-thunderbolt) before creating accounts for optional services.
 
 ## Bootstrap
 
@@ -68,15 +68,15 @@ You'll also need at least one AI provider API key — Anthropic, OpenAI, Mistral
 
 ## Helpful Makefile targets
 
-| Command                 | What it does                                                         |
-| ----------------------- | -------------------------------------------------------------------- |
-| `make doctor`           | Verifies your tools + env files. `make doctor-q` only prints issues. |
+| Command                 | What it does                                                                   |
+| ----------------------- | ------------------------------------------------------------------------------ |
+| `make doctor`           | Verifies your tools + env files. `make doctor-q` only prints issues.           |
 | `make run` / `make dev` | Starts backend + frontend. Kills stale processes on `:8000` and `:1420` first. |
-| `make docker-up`        | Starts PowerSync, Postgres, MongoDB.                                 |
-| `make docker-down`      | Stops containers, keeps volumes.                                     |
-| `make docker-nuke`      | Wipes all container data and rebuilds from scratch.                  |
-| `make check`            | Runs type-check, lint, and format-check.                             |
-| `make format`           | Formats frontend, backend, and Rust.                                 |
+| `make docker-up`        | Starts PowerSync, Postgres, MongoDB.                                           |
+| `make docker-down`      | Stops containers, keeps volumes.                                               |
+| `make docker-nuke`      | Wipes all container data and rebuilds from scratch.                            |
+| `make check`            | Runs type-check, lint, and format-check.                                       |
+| `make format`           | Formats frontend, backend, and Rust.                                           |
 
 ## Next steps
 
