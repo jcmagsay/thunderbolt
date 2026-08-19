@@ -217,6 +217,7 @@ A new synchronized table is not a good first change because it crosses frontend,
 
 - **Understand the system:** [Architecture](./docs/architecture/README.md)
 - **Run or deploy it:** [Development](./docs/development/quick-start.md) and [Deployment](./deploy/README.md)
+- **Understand CI, testing, and operational safeguards:** [Engineering Quality and Operations](./docs/development/engineering-quality.md)
 - **Understand sync and encryption:** [Production Readiness](./docs/architecture/production-readiness.md)
 - **Build interactive AI output:** [Widgets](./docs/features/widgets.md)
 - **Evaluate model behavior:** [AI Evaluations](./src/ai/eval/README.md)

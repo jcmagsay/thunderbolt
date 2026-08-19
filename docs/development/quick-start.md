@@ -100,4 +100,5 @@ For other distributions, use the upstream
 - [Mobile Setup](./mobile-setup.md) — iOS / Android / desktop Tauri dev prerequisites.
 - [Architecture](../architecture/) — how the pieces connect.
 - [Testing](./testing.md) — test patterns, composite keys, synced table rules.
+- [Engineering Quality and Operations](./engineering-quality.md) — CI gates, reported metrics, workflow costs, security scanning, monitoring, and privacy.
 - [Self-Hosting](../self-hosting/) — deploy Thunderbolt somewhere real.
